@@ -1,7 +1,10 @@
 import { Menu } from "../menu/menu";
 import { Review } from "../review/review";
+import { ReviewForm } from "../reviewForm/reviewForm";
+import { useState } from "react";
 
 export const Restaurant = (props) => {
+  const [reviews, setReviews] = useState(props.reviews || []);
   return (
     <div>
       <h2>{props.name}</h2>
@@ -17,10 +20,10 @@ export const Restaurant = (props) => {
           </li>
         ))}
       </ul>
-      {props.reviews.length > 0 && (
+      {reviews.length > 0 && (
         <><h4>Reviews:</h4>
         <ul>
-          {props.reviews.map((review) => (
+          {reviews.map((review) => (
             <li key={review.id}>
               <Review
                 id={review.id}
@@ -31,6 +34,11 @@ export const Restaurant = (props) => {
           </li>
         ))}
       </ul></>)}
+      <div>
+        <ReviewForm reviews={reviews} onReviewSubmit={(newReview) => {
+          setReviews([...reviews, newReview]);
+        }} />
+      </div>
     </div>
   );
 };
