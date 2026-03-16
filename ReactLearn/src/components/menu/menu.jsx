@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { DishCounter } from "../dishCounter/dishCounter";
 
 export const Menu = (props) => {
 
   const [dishCount, setDishCount] = useState(0);
+  const incrementDishCount = useCallback(() => {
+    setDishCount(dishCount + 1);
+  }, [dishCount]);
+
+  const decrementDishCount = useCallback(() => {
+    setDishCount(dishCount - 1 >= 0 ? dishCount - 1 : 0);
+  }, [dishCount]);
 
   return (
     <div style={{ border: "1px solid black", padding: "1rem", marginBottom: "1rem" }}>
@@ -17,9 +25,7 @@ export const Menu = (props) => {
           ))}
         </ul>
       </h4>
-      <button onClick={() => setDishCount(dishCount + 1)}>+</button>
-      <span>{dishCount}</span>
-      <button onClick={() => setDishCount(dishCount - 1 >= 0 ? dishCount - 1 : 0)}>-</button>
+      <DishCounter dishCount={dishCount} incrementDishCount={incrementDishCount} decrementDishCount={decrementDishCount} />
     </div>
   );
 };
