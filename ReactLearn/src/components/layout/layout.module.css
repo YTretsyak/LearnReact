@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: lightgray;
+  padding: 1rem;
+}
+
+.footer {
+  background-color: lightgray;
+  padding: 1rem;
+  margin-top: auto;
+}

@@ -1,10 +1,12 @@
+import styles from "./dishCounter.module.css";
+
 export const DishCounter = (props) => {
 
     const dishCount = props.dishCount || 0;
     const incrementDishCount = props.incrementDishCount || (() => {});
     const decrementDishCount = props.decrementDishCount || (() => {});
     return (
-        <div style={{ border: "1px solid black", padding: "1rem", marginBottom: "1rem" }}>
+        <div className={styles.dishCounter}>
             <h3>Dish Count:</h3>
             <button onClick={incrementDishCount}>+</button>
             <span>{dishCount}</span>

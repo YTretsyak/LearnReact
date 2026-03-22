@@ -21,23 +21,29 @@ export const Restaurant = (props) => {
         ))}
       </ul>
       {reviews.length > 0 && (
-        <><h4>Reviews:</h4>
-        <ul>
-          {reviews.map((review) => (
-            <li key={review.id}>
-              <Review
-                id={review.id}
-                user={review.user}
-              text={review.text}
-              rating={review.rating}
-            />
-          </li>
-        ))}
-      </ul></>)}
+        <>
+          <h4>Reviews:</h4>
+          <ul>
+            {reviews.map((review) => (
+              <li key={review.id}>
+                <Review
+                  id={review.id}
+                  user={review.user}
+                  text={review.text}
+                  rating={review.rating}
+                />
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
       <div>
-        <ReviewForm reviews={reviews} onReviewSubmit={(newReview) => {
-          setReviews([...reviews, newReview]);
-        }} />
+        <ReviewForm
+          reviews={reviews}
+          onReviewSubmit={(newReview) => {
+            setReviews([...reviews, newReview]);
+          }}
+        />
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
+import styles from "./layout.module.css";
 export const Layout = ({ children }) => {
   return (
-    <main style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <header style={{ backgroundColor: "lightgray", padding: "1rem" }}></header>
+    <main className={styles.main}>
+      <header className={styles.header}></header>
       {children}
-      <footer style={{ backgroundColor: "lightgray", padding: "1rem", marginTop: "auto" }}></footer>
+      <footer className={styles.footer}></footer>
     </main>
   );
 };

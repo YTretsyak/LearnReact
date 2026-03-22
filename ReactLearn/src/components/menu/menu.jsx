@@ -3,7 +3,6 @@ import { DishCounter } from "../dishCounter/dishCounter";
 import styles from "./menu.module.css";
 
 export const Menu = (props) => {
-
   const [dishCount, setDishCount] = useState(0);
   const incrementDishCount = useCallback(() => {
     setDishCount(dishCount + 1);
@@ -25,7 +24,11 @@ export const Menu = (props) => {
           ))}
         </ul>
       </h4>
-      <DishCounter dishCount={dishCount} incrementDishCount={incrementDishCount} decrementDishCount={decrementDishCount} />
+      <DishCounter
+        dishCount={dishCount}
+        incrementDishCount={incrementDishCount}
+        decrementDishCount={decrementDishCount}
+      />
     </div>
   );
 };

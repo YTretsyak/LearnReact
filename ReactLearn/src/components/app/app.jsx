@@ -7,18 +7,20 @@ import styles from "./app.module.css";
 import { RestaurantButton } from "../restaurantButton/button";
 
 export const App = () => {
-  const [activeRestaurant, setActiveRestaurant] = useState(restaurants.length > 0 ? restaurants[0] : null);
+  const [activeRestaurant, setActiveRestaurant] = useState(
+    restaurants.length > 0 ? restaurants[0] : null,
+  );
   return (
     <Layout>
-      <ScrollProgress/>
-      <div className = {styles.buttonsBody}>
-      {restaurants.map((restaurant) => ( 
-        <RestaurantButton
-          key={restaurant.id}
-          restaurant={restaurant}
-          setActiveRestaurant={setActiveRestaurant}
-        />
-      ))}
+      <ScrollProgress />
+      <div className={styles.buttonsBody}>
+        {restaurants.map((restaurant) => (
+          <RestaurantButton
+            key={restaurant.id}
+            restaurant={restaurant}
+            setActiveRestaurant={setActiveRestaurant}
+          />
+        ))}
       </div>
       {activeRestaurant && (
         <Restaurant

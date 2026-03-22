@@ -4,7 +4,7 @@ import styles from "./reviewForm.module.css";
 const INITIAL_FORM = {
   name: "",
   text: "",
-  rating: 0
+  rating: 0,
 };
 
 const SET_NAME_ACTION = "setNameAction";
@@ -58,31 +58,39 @@ export const ReviewForm = (props) => {
       <div>
         <label>rating:</label>
         <input
-          value={rating} type="number" min="0" max="5"
+          value={rating}
+          type="number"
+          min="0"
+          max="5"
           onChange={(event) =>
             dispatch({ type: SET_RATING_ACTION, payload: event.target.value })
           }
         />
       </div>
       <div>
-        <button type="button" onClick={() => dispatch({ type: CLEAR_FORM_ACTION })}>
+        <button
+          type="button"
+          onClick={() => dispatch({ type: CLEAR_FORM_ACTION })}
+        >
           clear
         </button>
       </div>
       <div>
-        <button onClick={(event) => {
+        <button
+          onClick={(event) => {
             event.preventDefault();
             onReviewSubmit({
               id: reviews.length > 0 ? reviews[reviews.length - 1].id + 1 : 1,
               user: name,
               text,
-              rating
-            })
-        
-          dispatch({ type: CLEAR_FORM_ACTION });}}
-          >
-            Submit Review
-          </button>
+              rating,
+            });
+
+            dispatch({ type: CLEAR_FORM_ACTION });
+          }}
+        >
+          Submit Review
+        </button>
       </div>
     </form>
   );
