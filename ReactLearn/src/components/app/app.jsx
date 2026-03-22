@@ -1,17 +1,23 @@
-import { restaurants } from "../../materials/mock";
-import { Restaurant } from "./restaurant/restaurant";
-import { Layout } from "./layout/layout";
+import { restaurants } from "../../../materials/mock";
+import { Restaurant } from "../restaurant/restaurant";
+import { Layout } from "../layout/layout";
 import { useState } from "react";
+import { ScrollProgress } from "../scrollProgress/scrollProgress";
+import styles from "./app.module.css";
+import { RestaurantButton } from "../restaurantButton/button";
 
 export const App = () => {
   const [activeRestaurant, setActiveRestaurant] = useState(restaurants.length > 0 ? restaurants[0] : null);
   return (
     <Layout>
-      <div style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+      <ScrollProgress/>
+      <div className = {styles.buttonsBody}>
       {restaurants.map((restaurant) => ( 
-        <button key={restaurant.id} onClick={() => setActiveRestaurant(restaurant)}>
-          {restaurant.name}
-        </button>
+        <RestaurantButton
+          key={restaurant.id}
+          restaurant={restaurant}
+          setActiveRestaurant={setActiveRestaurant}
+        />
       ))}
       </div>
       {activeRestaurant && (
