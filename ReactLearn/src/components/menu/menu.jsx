@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { DishCounter } from "../dishCounter/dishCounter";
+import styles from "./menu.module.css";
 
 export const Menu = (props) => {
 
@@ -13,12 +14,11 @@ export const Menu = (props) => {
   }, [dishCount]);
 
   return (
-    <div style={{ border: "1px solid black", padding: "1rem", marginBottom: "1rem" }}>
-      <h3>Dish:</h3>
-      <h4>name:{props.name}</h4>
-      <h4>price:{props.price}</h4>
+    <div className={styles.dish}>
+      <h4 className={styles.dishName}>Name:{props.name}</h4>
+      <h4>Price:{props.price}</h4>
       <h4>
-        ingredients:
+        Ingredients:
         <ul>
           {props.ingredients.map((ingredient) => (
             <li key={ingredient.id}>{ingredient}</li>
