@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+import styles from "./reviewForm.module.css";
 
 const INITIAL_FORM = {
   name: "",
@@ -35,7 +36,7 @@ export const ReviewForm = (props) => {
   const { name, text, rating } = form;
 
   return (
-    <form>
+    <form className={styles.reviewForm}>
       <div>
         <label>name:</label>
         <input
