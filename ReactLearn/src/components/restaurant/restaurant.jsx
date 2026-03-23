@@ -2,9 +2,11 @@ import { Menu } from "../menu/menu";
 import { Review } from "../review/review";
 import { ReviewForm } from "../reviewForm/reviewForm";
 import { useState } from "react";
+import { useSelector } from "../custom-redux/hooks";
 
 export const Restaurant = (props) => {
   const [reviews, setReviews] = useState(props.reviews || []);
+  const loggedIn  = useSelector(state => state.loggedIn);
   return (
     <div>
       <h2>{props.name}</h2>
@@ -37,14 +39,16 @@ export const Restaurant = (props) => {
           </ul>
         </>
       )}
-      <div>
-        <ReviewForm
-          reviews={reviews}
-          onReviewSubmit={(newReview) => {
-            setReviews([...reviews, newReview]);
-          }}
-        />
-      </div>
+      {loggedIn && (
+        <div>
+          <ReviewForm
+            reviews={reviews}
+            onReviewSubmit={(newReview) => {
+              setReviews([...reviews, newReview]);
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };

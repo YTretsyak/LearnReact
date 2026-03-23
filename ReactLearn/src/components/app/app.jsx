@@ -1,46 +1,30 @@
 import { restaurants } from "../../../materials/mock";
 import { Restaurant } from "../restaurant/restaurant";
 import { Layout } from "../layout/layout";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ScrollProgress } from "../scrollProgress/scrollProgress";
 import styles from "./app.module.css";
 import { RestaurantButton } from "../restaurantButton/button";
 // import { useRef } from "react";
 import { ThemeProvider } from "../themeProvider/ThemeProvider";
 import { ToggleThemeButton } from "../toggleThemeButton/toggleThemeButton";
+import { LoginTab } from "../login/loginTab";
+import { UserProvider } from "../custom-redux/provider";
+import {store} from "../store/index";
 
 export const App = () => {
   const [activeRestaurant, setActiveRestaurant] = useState(
     restaurants.length > 0 ? restaurants[0] : null,
   );
-  const buttonsBodyRef = useRef(null);
-  useEffect(() => {
-    if (buttonsBodyRef.current) {
-      console.log(buttonsBodyRef.current);
-      console.log(buttonsBodyRef.current.clientHeight);
-    }
-  }, []);
-
-  // const [timeInSecond, setTimeInSecond] = useState(0);
-
-  // var intervalElement = useRef(null);
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setTimeInSecond((prev) => prev + 1);
-  //     intervalElement.current.innerText = timeInSecond;
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // }, [timeInSecond]);
 
   return (
     <ThemeProvider>
+      <UserProvider store={store}>
+      <LoginTab/>
       <ToggleThemeButton />
       <Layout>
-        {/* <div ref={intervalElement}></div> */}
         <ScrollProgress />
-        <div className={styles.buttonsBody} ref={buttonsBodyRef}>
+        <div className={styles.buttonsBody}>
           {restaurants.map((restaurant) => (
             <RestaurantButton
               key={restaurant.id}
@@ -59,6 +43,7 @@ export const App = () => {
           />
         )}
       </Layout>
+      </UserProvider>
     </ThemeProvider>
   );
 };
