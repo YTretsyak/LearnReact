@@ -1,16 +1,9 @@
-import { useCallback, useState } from "react";
 import { DishCounter } from "../dishCounter/dishCounter";
 import styles from "./menu.module.css";
+import {useCounter} from "../../hooks/useCounter";
 
 export const Menu = (props) => {
-  const [dishCount, setDishCount] = useState(0);
-  const incrementDishCount = useCallback(() => {
-    setDishCount(dishCount + 1);
-  }, [dishCount]);
-
-  const decrementDishCount = useCallback(() => {
-    setDishCount(dishCount - 1 >= 0 ? dishCount - 1 : 0);
-  }, [dishCount]);
+  const { value, increment, decrement } = useCounter(0);
 
   return (
     <div className={styles.dish}>
@@ -25,9 +18,9 @@ export const Menu = (props) => {
         </ul>
       </h4>
       <DishCounter
-        dishCount={dishCount}
-        incrementDishCount={incrementDishCount}
-        decrementDishCount={decrementDishCount}
+        dishCount={value}
+        incrementDishCount={increment}
+        decrementDishCount={decrement}
       />
     </div>
   );
