@@ -1,0 +1,11 @@
+.themeButton{
+    width: 100%;
+}
+
+.dark{
+    background-color: rgba(44, 17, 132, 0.951);
+}
+
+.light{
+    background-color: rgba(204, 212, 213, 0.092);
+}
