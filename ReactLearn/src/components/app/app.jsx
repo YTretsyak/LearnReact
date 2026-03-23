@@ -1,11 +1,13 @@
 import { restaurants } from "../../../materials/mock";
 import { Restaurant } from "../restaurant/restaurant";
 import { Layout } from "../layout/layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollProgress } from "../scrollProgress/scrollProgress";
 import styles from "./app.module.css";
 import { RestaurantButton } from "../restaurantButton/button";
 // import { useRef } from "react";
+import { ThemeProvider } from "../themeProvider/ThemeProvider";
+import { ToggleThemeButton } from "../toggleThemeButton/toggleThemeButton";
 
 export const App = () => {
   const [activeRestaurant, setActiveRestaurant] = useState(
@@ -33,26 +35,30 @@ export const App = () => {
   // }, [timeInSecond]);
 
   return (
-    <Layout>
-      <ScrollProgress />
-      <div className={styles.buttonsBody}>
-        {restaurants.map((restaurant) => (
-          <RestaurantButton
-            key={restaurant.id}
-            restaurant={restaurant}
-            setActiveRestaurant={setActiveRestaurant}
+    <ThemeProvider>
+      <ToggleThemeButton />
+      <Layout>
+        {/* <div ref={intervalElement}></div> */}
+        <ScrollProgress />
+        <div className={styles.buttonsBody} ref={buttonsBodyRef}>
+          {restaurants.map((restaurant) => (
+            <RestaurantButton
+              key={restaurant.id}
+              restaurant={restaurant}
+              setActiveRestaurant={setActiveRestaurant}
+            />
+          ))}
+        </div>
+        {activeRestaurant && (
+          <Restaurant
+            key={activeRestaurant.id}
+            id={activeRestaurant.id}
+            name={activeRestaurant.name}
+            menu={activeRestaurant.menu}
+            reviews={activeRestaurant.reviews}
           />
-        ))}
-      </div>
-      {activeRestaurant && (
-        <Restaurant
-          key={activeRestaurant.id}
-          id={activeRestaurant.id}
-          name={activeRestaurant.name}
-          menu={activeRestaurant.menu}
-          reviews={activeRestaurant.reviews}
-        />
-      )}
-    </Layout>
+        )}
+      </Layout>
+    </ThemeProvider>
   );
 };
