@@ -1,6 +1,6 @@
 import { createStore } from "../custom-redux/store";
 
-const defaultState = { user: {name: null}, loggedIn: false };
+const defaultState = { user: { name: null }, loggedIn: false };
 
 const rootReducer = (state, action) => {
   switch (action?.type) {

@@ -6,7 +6,7 @@ import { useSelector } from "../custom-redux/hooks";
 
 export const Restaurant = (props) => {
   const [reviews, setReviews] = useState(props.reviews || []);
-  const loggedIn  = useSelector(state => state.loggedIn);
+  const loggedIn = useSelector((state) => state.loggedIn);
   return (
     <div>
       <h2>{props.name}</h2>
