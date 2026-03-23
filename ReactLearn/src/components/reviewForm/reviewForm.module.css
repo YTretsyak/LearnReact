@@ -1,0 +1,5 @@
+.reviewForm {
+  border: 1px solid black;
+  width: 300px;
+  align-items: flex-start;
+}
