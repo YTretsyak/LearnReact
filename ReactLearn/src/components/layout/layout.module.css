@@ -5,12 +5,18 @@
 }
 
 .header {
-  background-color: lightgray;
   padding: 1rem;
 }
 
 .footer {
-  background-color: lightgray;
   padding: 1rem;
   margin-top: auto;
+}
+
+.dark {
+  background-color: rgba(6, 3, 16, 0.951);
+}
+
+.light {
+  background-color: rgba(189, 211, 215, 0.092);
 }

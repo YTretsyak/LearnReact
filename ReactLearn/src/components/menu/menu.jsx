@@ -1,9 +1,11 @@
 import { DishCounter } from "../dishCounter/dishCounter";
 import styles from "./menu.module.css";
-import {useCounter} from "../../hooks/useCounter";
+import { useCounter } from "../../hooks/useCounter";
+import { useSelector } from "../custom-redux/hooks";
 
 export const Menu = (props) => {
   const { value, increment, decrement } = useCounter(0);
+  const loggedIn = useSelector((state) => state.loggedIn);
 
   return (
     <div className={styles.dish}>
@@ -17,11 +19,13 @@ export const Menu = (props) => {
           ))}
         </ul>
       </h4>
-      <DishCounter
-        dishCount={value}
-        incrementDishCount={increment}
-        decrementDishCount={decrement}
-      />
+      {loggedIn && (
+        <DishCounter
+          dishCount={value}
+          incrementDishCount={increment}
+          decrementDishCount={decrement}
+        />
+      )}
     </div>
   );
 };
